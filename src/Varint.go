@@ -3,7 +3,7 @@ package src
 // based on protocol buffers 128 variant
 // compression for small numbers
 
-func Encode(integers []int) []byte {
+func VarintEncode(integers []int) []byte {
 	bytes := []byte{}
 
 	for _, v := range integers {
@@ -24,7 +24,7 @@ func Encode(integers []int) []byte {
 	return bytes
 }
 
-func Decode(bytes []byte) []int {
+func VarintDecode(bytes []byte) []int {
 	var integers []int
 	seq := []byte{}
 
@@ -52,3 +52,4 @@ func Decode(bytes []byte) []int {
 
 	return integers
 }
+
