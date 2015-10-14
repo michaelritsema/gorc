@@ -1,6 +1,6 @@
 package src
 
-import "fmt"
+//import "fmt"
 
 //https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC
 // Byte Run Length Encoding
@@ -25,7 +25,7 @@ func runSeq(bytes []byte) []byte {
 }
 
 func ByteRunLengthEncode(bytes []byte) []byte {
-	fmt.Println("start of func")
+	//fmt.Println("start of func")
 	encodedBytes := []byte{}
 
 	startIndex := -1
@@ -61,10 +61,33 @@ func ByteRunLengthEncode(bytes []byte) []byte {
 		i++
 
 	}
-	fmt.Println(encodedBytes)
-	fmt.Println("end of func")
+	//fmt.Println(encodedBytes)
+	//fmt.Println("end of func")
 	return encodedBytes
 
 }
 
-func ByteRunLengthDecode
+func ByteRunLengthDecode(bytes []byte) []byte {
+	decodedBytes := []byte{}
+
+	for i:=0;i<len(bytes); {
+		b := bytes[i]
+		if b <= 127 {
+			// run seq
+			for x:=0;x<int(b);x++ {
+				decodedBytes = append(decodedBytes,bytes[i+1])
+			}
+			i+=2;
+
+		} else {
+			// lit seq
+			b = byte(255-b+1)
+			i++
+			for x:=0;x<int(b);x++ {
+				decodedBytes = append(decodedBytes,bytes[i])
+				i++
+			}
+		}
+	}
+	return decodedBytes
+}
