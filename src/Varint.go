@@ -2,6 +2,8 @@ package src
 
 // based on protocol buffers 128 variant
 // compression for small numbers
+// only supported unsigned
+// https://cwiki.apache.org/confluence/display/Hive/LanguageManual+ORC
 
 func VarintEncode(integers []int) []byte {
 	bytes := []byte{}
@@ -52,4 +54,3 @@ func VarintDecode(bytes []byte) []int {
 
 	return integers
 }
-

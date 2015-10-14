@@ -30,3 +30,4 @@ func ExampleEncodeDecodeSmallInts() {
 	fmt.Println(src.VarintDecode((src.VarintEncode(ints[:]))))
 	// Output: [3 4 5 6 255 127 128 128 1 7]
 }
+
